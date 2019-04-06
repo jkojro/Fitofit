@@ -47,5 +47,12 @@ describe WalksController, type: :controller do
       expect(response.status).to eq(200)
       expect(response).to render_template :show
     end
+
+    it 'shows last week distance' do
+      this_week_walks = FactoryBot.create_list(:walk, 3)
+      last_week_walks = FactoryBot.create_list(:walk, 2, created_at: 1.week.ago)
+      action
+      assigns(:this_week_walks_distance).should eq(this_week_walks.sum(&:distance))
+    end
   end
 end
