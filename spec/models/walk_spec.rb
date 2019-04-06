@@ -6,7 +6,6 @@ RSpec.describe Walk, type: :model do
       subject { FactoryBot.build(:walk) }
       it { should validate_presence_of(:start_location) }
       it { should validate_presence_of(:end_location) }
-      it { should validate_presence_of(:distance) }
     end
 
     context "location format" do

@@ -1,0 +1,18 @@
+<%= form_for(@walk) do |f| %>
+	<ul>
+	<% @walk.errors.full_messages.each do |error| %>
+		<li><%= error %></li>
+	<% end %>
+	</ul>
+  <div>
+		<%= f.label :start_location, 'Start point' %><br />
+		<%= f.text_field :start_location %><br />
+  </div>
+  <div>
+    <%= f.label :end_location, 'End point' %><br />
+    <%= f.text_field :end_location %>
+  </div>
+  <p>
+		<%= f.submit "Submit" %>
+  </p>
+<% end %>
