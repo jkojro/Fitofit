@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :walk do
-    start_location { "MyString" }
-    end_location { "MyString" }
-    distance { 1.5 }
+    start_location { 'Plac Europejski 2, Warszawa, Polska' }
+    end_location { 'Poznańska 121, Warszawa, Polska' }
+    distance { 0.0 }
   end
 end
