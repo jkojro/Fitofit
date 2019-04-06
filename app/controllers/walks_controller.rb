@@ -2,6 +2,7 @@ class WalksController < ApplicationController
 
   def show
     @walk = Walk.find(params[:id])
+    @this_week_walks_distance = Walk.group_by_week(:created_at, last: 1).sum(:distance).values.first
   end
 
   def new

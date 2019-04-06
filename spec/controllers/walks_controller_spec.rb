@@ -49,10 +49,9 @@ describe WalksController, type: :controller do
     end
 
     it 'shows last week distance' do
-      this_week_walks = FactoryBot.create_list(:walk, 3)
       last_week_walks = FactoryBot.create_list(:walk, 2, created_at: 1.week.ago)
       action
-      assigns(:this_week_walks_distance).should eq(this_week_walks.sum(&:distance))
+      assigns(:this_week_walks_distance).should eq(walk.distance)
     end
   end
 end
