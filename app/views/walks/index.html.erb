@@ -1,0 +1,13 @@
+<h1>Your monthly statistics from <%= @actual_month_walks.to_a.flatten.first %></h1>
+<table>
+  <tr>
+    <th>Day</th>
+    <th>Total distance</th>
+  </tr>
+  <% @actual_month_walks.each do |day_data| %>
+    <tr>
+      <td><%= day_data.first.second.strftime("%d %B") %></td>
+      <td><%= day_data.second %></td>
+    </tr>
+  <% end %>
+</table>
