@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe WalksController, type: :feature do
+  include Devise::Test::IntegrationHelpers
+
+  let(:user) { create(:user) }
+  before { sign_in user }
+  
   describe '#new' do
     scenario 'new page returns 200 status' do
       visit new_walk_path

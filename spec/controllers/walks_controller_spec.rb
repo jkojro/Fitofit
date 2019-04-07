@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe WalksController, type: :controller do
+  include Devise::Test::ControllerHelpers
+
+  let(:user) { create(:user) }
+  before { sign_in user }
+
   describe 'GET #new' do
     let(:action) { get :new }
     it 'renders the :new view' do
@@ -17,7 +22,8 @@ describe WalksController, type: :controller do
       let(:params) { { start_location: 'Dąbrowskiego 15, Warszawa, Polska', end_location: 'Białostoska 1, Warszawa, Polska' } }
 
       it 'response with status 200' do
-        expect(response.status).to eq(200)
+        action
+        expect(response.status).to eq(302)
       end
 
       it 'creates walk' do
@@ -29,6 +35,7 @@ describe WalksController, type: :controller do
       let!(:params) { { start_location: 'Dąbrowskiego 15 55, Warszawa, Polska', end_location: 'Białostoska 1, Warszawa' } }
 
       it 'response with status 200' do
+        action
         expect(response.status).to eq(200)
       end
 
@@ -39,7 +46,7 @@ describe WalksController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:walk) { FactoryBot.create(:walk) }
+    let(:walk) { FactoryBot.create(:walk, user_id: user.id) }
     let(:action) { get :show, params: { id: walk.id } }
 
     it 'renders the :show view' do
@@ -48,8 +55,9 @@ describe WalksController, type: :controller do
       expect(response).to render_template :show
     end
 
-    it 'shows last week distance' do
-      last_week_walks = FactoryBot.create_list(:walk, 2, created_at: 1.week.ago)
+    it 'shows users last week distance' do
+      last_week_walks = FactoryBot.create_list(:walk, 2, created_at: 1.week.ago, user_id: user.id)
+      other_users_walks = FactoryBot.create_list(:walk, 2)
       action
       assigns(:this_week_walks_distance).should eq(walk.distance)
     end

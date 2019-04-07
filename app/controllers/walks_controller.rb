@@ -1,16 +1,17 @@
 class WalksController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @walk = Walk.find(params[:id])
-    @this_week_walks_distance = Walk.group_by_week(:created_at, last: 1).sum(:distance).values.first
+    @this_week_walks_distance = current_user.walks.group_by_week(:created_at, last: 1).sum(:distance).values.first
   end
 
   def new
-    @walk = Walk.new
+    @walk = current_user.walks.build
   end
 
   def create
-    @walk = Walk.new(walk_params)
+    @walk = current_user.walks.build(walk_params)
     if @walk.save
       redirect_to @walk
     else

@@ -30,4 +30,8 @@ RSpec.describe Walk, type: :model do
       expect(subject.distance).to eq(1.99)
     end
   end
+
+  describe 'relations' do
+    it { should belong_to :user }
+  end
 end
