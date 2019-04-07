@@ -62,4 +62,15 @@ describe WalksController, type: :controller do
       assigns(:this_week_walks_distance).should eq(walk.distance)
     end
   end
+
+  describe 'GET #index' do
+    let(:walk) { FactoryBot.create(:walk, user_id: user.id) }
+    let(:action) { get :index }
+
+    it 'renders the :index view' do
+      action
+      expect(response.status).to eq(200)
+      expect(response).to render_template :index
+    end
+  end
 end
