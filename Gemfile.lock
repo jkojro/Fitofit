@@ -93,7 +93,6 @@ GEM
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
     ffi (1.10.0)
-    geocoder (1.5.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     groupdate (2.5.3)
@@ -273,7 +272,6 @@ DEPENDENCIES
   devise (~> 4.6, >= 4.6.1)
   factory_bot
   factory_bot_rails
-  geocoder (~> 1.3, >= 1.3.7)
   groupdate (~> 2.5)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
