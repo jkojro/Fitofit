@@ -2,13 +2,14 @@ class WalksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @actual_month_walks = current_user.walks.group_by_month(:created_at, last: 1, format: '%B').
-                                       group_by_day(:created_at).sum(:distance)
+    @actual_month_walks = current_user.walks.group_by_month(:created_at, last: 1, format: '%B')
+                          .group_by_day(:created_at).sum(:distance)
   end
 
   def show
     @walk = Walk.find(params[:id])
-    @this_week_walks_distance = current_user.walks.group_by_week(:created_at, last: 1).sum(:distance).values.first
+    @this_week_walks_distance = current_user.walks.group_by_week(:created_at, last: 1)
+                                .sum(:distance).values.first
   end
 
   def new
