@@ -1,4 +1,4 @@
-<%= form_for(@walk) do |f| %>
+<%= simple_form_for(@walk) do |f| %>
 	<ul>
 	<% @walk.errors.full_messages.each do |error| %>
 		<li><%= error %></li>
@@ -6,15 +6,11 @@
 	</ul>
   <div>
 		<%= f.label :start_location, 'Start point' %><br />
-		<%= f.text_field :start_location %><br />
+		<%= f.input :start_location, input_html: { class: 'form-control' }, label: false %><br />
   </div>
-  <div>
+  <div class='panel-body'>
     <%= f.label :end_location, 'End point' %><br />
-    <%= f.text_field :end_location %>
+    <%= f.input :end_location, input_html: { class: 'form-control' }, label: false %>
   </div>
-  <p>
-		<%= f.submit "Submit" %>
-  </p>
+		<%= f.submit "Submit", class: 'btn btn-info add-button' %>
 <% end %>
-
-<%= link_to 'Show monthly statistics', walks_path %>

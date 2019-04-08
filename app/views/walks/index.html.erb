@@ -5,11 +5,13 @@
     <th>Total distance</th>
   </tr>
   <% @actual_month_walks.each do |day_data| %>
+  <div id="todo_items_wrapper">
     <tr>
       <td><%= day_data.first.second.strftime("%d %B") %></td>
       <td><%= day_data.second %></td>
     </tr>
+  </div>
   <% end %>
 </table>
 
-<%= link_to 'Add new walk', new_walk_path %>
+<%= link_to 'Add new walk', new_walk_path, class: 'btn btn-info add-button' %>

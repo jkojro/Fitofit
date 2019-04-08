@@ -16,11 +16,10 @@
           <%= link_to "Fitofit", root_path %>
         </div>
         <% if user_signed_in? %>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-            </li>
-          </ul>
+        <div class="navbar-statistics">
+          <%= link_to 'My monthly statistics', walks_path %>
+        </div>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         <% else %>
           <ul class="nav navbar-nav navbar-right">
             <li>
@@ -33,11 +32,11 @@
         <% end %>
       </div>
     </nav>
-    <div>
+    <div class="container">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: "alert" %>
       <% end %>
+      <%= yield %>
     </div>
-    <%= yield %>
   </body>
 </html>

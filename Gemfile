@@ -37,6 +37,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'groupdate', '~> 2.5'
 gem 'devise', '~> 4.6', '>= 4.6.1'
+gem 'bootstrap', '~> 4.0'
+gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
+gem 'jquery-rails', '>= 3.0'
+gem 'simple_form', '~> 4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
