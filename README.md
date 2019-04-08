@@ -6,6 +6,6 @@ Rails version: 5.2.3
 
 Database: PostgreSQL
 
-App uses Google Maps distance-matrix API and places API
+FITOFIT uses Google Maps distance-matrix API and places API
 
 You can check it live [HERE](https://myfitofit.herokuapp.com)
