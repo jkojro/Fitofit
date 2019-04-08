@@ -1,6 +1,3 @@
-require 'open-uri'
-require 'uri'
-
 class Walk < ApplicationRecord
   validates :start_location, :end_location, presence: true
   validate :start_different_form_end
@@ -13,15 +10,7 @@ class Walk < ApplicationRecord
   private
 
   def calculate_distance
-    start = URI.encode(start_location)
-    finish = URI.encode(end_location)
-    url = URI.parse(
-      "https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{start}&destinations=#{finish}&mode=walking&units=metric&key=#{Rails.application.credentials[:google_maps_api_key]}"
-    )
-    response = open(url).read
-    result = JSON.parse(response)
-    m_distance = result["rows"].first["elements"].first["distance"]["value"].to_f
-    self.distance = (m_distance/1000).round(2)
+    CountWalkDistanceService.new(self).call
   end
 
   def start_different_form_end
