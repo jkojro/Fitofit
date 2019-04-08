@@ -1,24 +1,11 @@
-# README
+# FITOFIT
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby version: 2.5.3
 
-Things you may want to cover:
+Rails version: 5.2.3
 
-* Ruby version
+Database: PostgreSQL
 
-* System dependencies
+App uses Google Maps distance-matrix API and places API
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can check it live [HERE](https://myfitofit.herokuapp.com)
