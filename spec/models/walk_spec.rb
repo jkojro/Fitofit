@@ -27,7 +27,7 @@ RSpec.describe Walk, type: :model do
     subject { FactoryBot.build(:walk) }
     it 'counts distance' do
       subject.save
-      expect(subject.distance).to eq(1.99)
+      expect(subject.distance).to eq(2.36)
     end
   end
 

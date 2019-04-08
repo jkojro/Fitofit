@@ -14,7 +14,7 @@ describe WalksController, type: :feature do
 
       expect(page.status_code).to eq 200
       expect(page.current_path).to eq walk_path(walk.id)
-      expect(page).to have_content('On your last walk you made distance of 1.99 km')
+      expect(page).to have_content('On your last walk you made distance of 2.36 km')
     end
 
     scenario 'display users this week summary distance' do
@@ -24,7 +24,7 @@ describe WalksController, type: :feature do
 
       visit walk_path(this_week_walks.last.id)
 
-      expect(page).to have_content('Your summary distance in this week is 5.97 km')
+      expect(page).to have_content('Your summary distance in this week is 7.08 km')
     end
   end
 end

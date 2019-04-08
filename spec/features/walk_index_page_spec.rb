@@ -24,9 +24,9 @@ describe WalksController, type: :feature do
       scenario 'display actual month statistisc' do
         visit walks_path
         expect(page.current_path).to eq walks_path
-        expect(page).to have_css('tr', text: '01 April 1.99')
-        expect(page).to have_css('tr', text: '06 April 5.97')
-        expect(page).to have_css('tr', text: '07 April 3.98')
+        expect(page).to have_css('tr', text: '01 April 2.36')
+        expect(page).to have_css('tr', text: '06 April 7.08')
+        expect(page).to have_css('tr', text: '07 April 4.72')
         expect(page).to have_content('Your monthly statistics from April')
       end
 

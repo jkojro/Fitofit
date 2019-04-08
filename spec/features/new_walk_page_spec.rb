@@ -5,7 +5,7 @@ describe WalksController, type: :feature do
 
   let(:user) { create(:user) }
   before { sign_in user }
-  
+
   describe '#new' do
     scenario 'new page returns 200 status' do
       visit new_walk_path
@@ -24,7 +24,7 @@ describe WalksController, type: :feature do
 
       click_button 'Submit'
 
-      expect(page).to have_content('On your last walk you made distance of 1.99 km')
+      expect(page).to have_content('On your last walk you made distance of 2.36 km')
     end
 
     scenario 'invalid data is submited' do
