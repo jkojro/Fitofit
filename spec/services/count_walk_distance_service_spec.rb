@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CountWalkDistanceService, type: :service do
+describe CountWalkDistanceService, :vcr, type: :service do
   describe '#call' do
     let(:walk) { build(:walk) }
     subject { described_class.new(walk) }

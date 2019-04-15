@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe WalksController, type: :feature do
+describe WalksController, :vcr, type: :feature do
   include Devise::Test::IntegrationHelpers
 
   let(:user) { create(:user) }

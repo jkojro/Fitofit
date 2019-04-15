@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Walk, type: :model do
+RSpec.describe Walk, :vcr, type: :model do
   describe 'validations' do
     context 'presence' do
       subject { FactoryBot.build(:walk) }

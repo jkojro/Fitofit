@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe WalksController, type: :controller do
+describe WalksController, :vcr, type: :controller do
   include Devise::Test::ControllerHelpers
 
   let(:user) { create(:user) }
@@ -22,8 +22,8 @@ describe WalksController, type: :controller do
       let(:params) { { start_location: 'Dąbrowskiego 15, Warszawa, Polska', end_location: 'Białostoska 1, Warszawa, Polska' } }
 
       it 'response with status 200' do
-        action
-        expect(response.status).to eq(302)
+          action
+          expect(response.status).to eq(302)
       end
 
       it 'creates walk' do
