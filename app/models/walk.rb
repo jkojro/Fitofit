@@ -7,10 +7,6 @@ class Walk < ApplicationRecord
 
   before_save :calculate_distance
 
-  scope :actual_month_walks, -> { group_by_month(:created_at, last: 1, format: '%B')
-                        .group_by_day(:created_at).sum(:distance) }
-  scope :this_week_walk_distance, -> { group_by_week(:created_at, last: 1).sum(:distance).values.first }
-
   private
 
   def calculate_distance

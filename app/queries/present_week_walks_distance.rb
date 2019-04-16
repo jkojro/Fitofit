@@ -1,0 +1,7 @@
+class PresentWeekWalksDistance
+  def call(relation)
+    relation
+      .group_by_week(:created_at, last: 1)
+      .sum(:distance).values.first 
+  end
+end
