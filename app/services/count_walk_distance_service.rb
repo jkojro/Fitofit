@@ -1,37 +1,58 @@
 require 'open-uri'
 require 'uri'
+require "dry/transaction"
+require 'dry/monads/all'
 
 class CountWalkDistanceService
-  def initialize(walk)
-    @walk = walk
+  include Dry::Transaction
+  include Dry::Monads
+
+  step :validate_walk
+  step :encode_locations
+  step :parse_url
+  step :get_response
+  step :parse_response
+  step :distance
+  step :save_walk
+
+  private
+
+  def validate_walk(walk:)
+    walk.valid? ? Success(walk: walk) : Failure('invalid address')
   end
 
-  def call
-    return unless @walk.valid?
-    url = parse_url(encoded_locations)
-    result = response_result(url)
-    @walk.distance = distance(result)
-    @walk.save ? @walk : false
+  def encode_locations(walk:)
+    locations = [URI.encode(walk.start_location), URI.encode(walk.end_location)]
+    locations.second.is_a?(String) ? Success(walk: walk, locations: locations) : Failure
   end
 
-  def encoded_locations
-    [URI.encode(@walk.start_location), URI.encode(@walk.end_location)]
-  end
-
-  def parse_url(locations)
+  def parse_url(walk:, locations:)
     start, finish = locations
-    URI.parse(
-      "https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{start}&destinations=#{finish}&mode=walking&units=metric&key=#{Rails.application.credentials[:google_maps_api_key]}"
+    url = URI.parse(
+      "https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{start}&destinations=#{finish}\r\n
+        &mode=walking&units=metric&key=#{Rails.application.credentials[:google_maps_api_key]}"
     )
+    url ? Success(walk: walk, url: url) : Failure
   end
 
-  def response_result(url)
+  def get_response(walk:, url:)
     response = open(url).read
-    JSON.parse(response)
+    response ? Success(walk: walk, response: response) : Failure
   end
 
-  def distance(result)
-    m_distance = result['rows'].first['elements'].first['distance']['value'].to_f
-    (m_distance / 1000).round(2)
+  def parse_response(walk:, response:)
+    result_json = JSON.parse(response)
+    result_json ? Success(walk: walk, result_json: result_json) : Failure
+  end
+
+  def distance(walk:, result_json:)
+    m_distance = result_json['rows'].first['elements'].first['distance']['value'].to_f
+    distance = (m_distance / 1000).round(2)
+    distance.is_a?(Float) ? Success(walk: walk, distance: distance) : Failure
+  end
+
+  def save_walk(walk:, distance:)
+    walk.distance = distance
+    walk.save ? Success(walk: walk) : Failure
   end
 end

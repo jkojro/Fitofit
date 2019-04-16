@@ -18,7 +18,7 @@ class WalksController < ApplicationController
 
   def create
     @walk = current_user.walks.build(walk_params)
-    if CountWalkDistanceService.new(@walk).call
+    if CountWalkDistanceService.new.call(walk: @walk).success?
       redirect_to @walk
     else
       render :new
