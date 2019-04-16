@@ -7,9 +7,11 @@ class CountWalkDistanceService
   end
 
   def call
+    return unless @walk.valid?
     url = parse_url(encoded_locations)
     result = response_result(url)
     @walk.distance = distance(result)
+    @walk.save ? @walk : false
   end
 
   def encoded_locations

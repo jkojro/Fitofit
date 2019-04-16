@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CountWalkDistanceService, :vcr, type: :service do
   describe '#call' do
-    let(:walk) { build(:walk) }
+    let(:walk) { build(:walk, distance: 0.0) }
     subject { described_class.new(walk) }
 
     it 'counts distance' do

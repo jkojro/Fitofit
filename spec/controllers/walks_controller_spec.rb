@@ -39,7 +39,7 @@ describe WalksController, :vcr, type: :controller do
         expect(response.status).to eq(200)
       end
 
-      it 'doesnt create walk with valid attributes' do
+      it 'doesnt create walk' do
         expect { action }.to change { Walk.count }.by(0)
       end
     end
