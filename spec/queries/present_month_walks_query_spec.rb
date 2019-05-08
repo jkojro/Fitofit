@@ -9,12 +9,8 @@ describe PresentMonthWalksQuery, :vcr do
     let!(:this_month_walks) { create(:walk, user_id: user.id) }
     let!(:other_user_walks) { create(:walk) }
 
-    it 'returns all this month walks' do
-      expect(present_month_walks.call(Walk.all).values.first).to eq(4.72)
-    end
-
     it 'returns users this month walks' do
-      expect(present_month_walks.call(user.walks).values.first).to eq(2.36)
+      expect(present_month_walks.call(user).values.first).to eq(2.36)
     end
   end
 end

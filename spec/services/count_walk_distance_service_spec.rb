@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CountWalkDistanceService, :vcr, type: :service do
+describe AssignWalkDistanceService, :vcr, type: :service do
   describe '#call' do
     describe 'valid locations' do
       let(:walk) { build(:walk, distance: 0.0) }

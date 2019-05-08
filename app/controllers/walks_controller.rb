@@ -2,14 +2,12 @@ class WalksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    relation = current_user.walks
-    @actual_month_walks = PresentMonthWalksQuery.new.call(relation)
+    @actual_month_walks = PresentMonthWalksQuery.new.call(current_user)
   end
 
   def show
     @walk = Walk.find(params[:id])
-    relation = current_user.walks
-    @this_week_walks_distance = PresentWeekWalksDistance.new.call(relation)
+    @this_week_walks_distance = PresentWeekWalksDistance.new.call(current_user)
   end
 
   def new
@@ -18,8 +16,11 @@ class WalksController < ApplicationController
 
   def create
     @walk = current_user.walks.build(walk_params)
-    if CountWalkDistanceService.new.call(walk: @walk).success?
-      redirect_to @walk
+    if AssignWalkDistanceService.new.call(walk: @walk).success?
+      @walk = AssignWalkDistanceService.new.call(walk: @walk).value![:walk]
+      if @walk.save
+        redirect_to @walk
+      end
     else
       render :new
     end
