@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe AssignWalkDistanceService, :vcr, type: :service do
+describe BuildWalkWithDistanceService, :vcr, type: :service do
   describe '#call' do
     describe 'valid locations' do
       let(:walk) { build(:walk, distance: 0.0) }
-      subject { described_class.new.call(walk: walk) }
+      subject { described_class.new.call(walk.params) }
 
       it 'counts distance' do
         expect(walk.distance).to eq(0.0)

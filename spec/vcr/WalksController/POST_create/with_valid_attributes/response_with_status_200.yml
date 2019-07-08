@@ -138,4 +138,58 @@ http_interactions:
         ewogICAiZGVzdGluYXRpb25fYWRkcmVzc2VzIiA6IFsgIkJpYcWCb3N0b2NrYSAxLCAwMy03NDEgV2Fyc3phd2EsIFBvbGFuZCIgXSwKICAgIm9yaWdpbl9hZGRyZXNzZXMiIDogWyAiSmFyb3PFgmF3YSBExIVicm93c2tpZWdvIDE1LCAwMC00MDEgV2Fyc3phd2EsIFBvbGFuZCIgXSwKICAgInJvd3MiIDogWwogICAgICB7CiAgICAgICAgICJlbGVtZW50cyIgOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgImRpc3RhbmNlIiA6IHsKICAgICAgICAgICAgICAgICAgInRleHQiIDogIjcuMyBrbSIsCiAgICAgICAgICAgICAgICAgICJ2YWx1ZSIgOiA3MzIyCiAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICJkdXJhdGlvbiIgOiB7CiAgICAgICAgICAgICAgICAgICJ0ZXh0IiA6ICIxIGhvdXIgMzMgbWlucyIsCiAgICAgICAgICAgICAgICAgICJ2YWx1ZSIgOiA1NTkxCiAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICJzdGF0dXMiIDogIk9LIgogICAgICAgICAgICB9CiAgICAgICAgIF0KICAgICAgfQogICBdLAogICAic3RhdHVzIiA6ICJPSyIKfQo=
     http_version: 
   recorded_at: Wed, 08 May 2019 11:57:27 GMT
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=Bia%C5%82ostoska%201,%20Warszawa,%20Polska%20%20%20%20%20%20%20%20&key=&mode=walking&origins=D%C4%85browskiego%2015,%20Warszawa,%20Polska&units=metric
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Sun, 23 Jun 2019 04:59:32 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, must-revalidate
+      Vary:
+      - Accept-Language
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server-Timing:
+      - gfet4t7; dur=2
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="46,44,43,39"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "destination_addresses" : [],
+           "error_message" : "You must use an API key to authenticate each request to Google Maps Platform APIs. For additional information, please refer to http://g.co/dev/maps-no-account",
+           "origin_addresses" : [],
+           "rows" : [],
+           "status" : "REQUEST_DENIED"
+        }
+    http_version: 
+  recorded_at: Sun, 23 Jun 2019 04:59:32 GMT
 recorded_with: VCR 4.0.0

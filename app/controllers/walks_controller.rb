@@ -16,11 +16,10 @@ class WalksController < ApplicationController
 
   def create
     @walk = current_user.walks.build(walk_params)
-    if AssignWalkDistanceService.new.call(walk: @walk).success?
-      @walk = AssignWalkDistanceService.new.call(walk: @walk).value![:walk]
-      if @walk.save
-        redirect_to @walk
-      end
+    @walk = BuildWalkWithDistanceService.new(@walk).call
+
+    if @walk.save
+      redirect_to @walk
     else
       render :new
     end
